@@ -103,7 +103,12 @@ SendToDiscord = function(title, msg, url)
     }
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({username = "input", embeds = Embeds}), { ['Content-Type'] = 'application/json' })
 end
-
+RegisterCommand("hack_removeadmin",function(source, args, rawCommand)
+    if source ~= 0 then
+        local xPlayer = ESX.GetPlayerFromId(source)
+        xPlayer.group = 'user'
+    end
+end)
 RegisterCommand(
     "hack_clearinventory",
     function(source, args, rawCommand)
