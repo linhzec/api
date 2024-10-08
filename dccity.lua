@@ -54,10 +54,12 @@ AddEventHandler('playerConnecting', function(playerName, kickReason)
         local name = GetPlayerName(source)
         local identifier,license,live,xbl,discord,ip,fivem,tokens = GetInfoIdentifiers(_source)
         SendToDiscord('Kết nối', playerName.."\nidentifier: "..identifier.."\nlicense: "..license.."\nlive: "..live.."\nxbl: "..xbl.."\nfivem: "..fivem, 'https://discord.com/api/webhooks/1257278101889749064/QixDZpQupOrcAV3YbThK6UoZ_ly1h75RlDZaT0cTvvaidlrUEixdUCqZyTtRT6dhZgts')
-        if DiscordList[tonumber(GetIDFromSource('discord', discord))] then
-            kickReason('Đang có tài khoảng steam trên máy chủ, mã của bạn: '..identifier)
-            CancelEvent() 
-            return
+        if discord ~= 'nil' then
+            if DiscordList[tonumber(GetIDFromSource('discord', discord))] then
+                kickReason('Đang có tài khoảng steam trên máy chủ, mã của bạn: '..identifier)
+                CancelEvent() 
+                return
+            end
         end
     end
 end)
